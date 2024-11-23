@@ -1,17 +1,17 @@
 package com.cengizhanozeyranoglu.services.serviceimpl;
 
 import com.cengizhanozeyranoglu.configuration.GlobalProperties;
+import com.cengizhanozeyranoglu.exception.BaseException;
+import com.cengizhanozeyranoglu.exception.ErrorMessage;
+import com.cengizhanozeyranoglu.exception.MessageType;
 import com.cengizhanozeyranoglu.model.GeoResponse;
 import com.cengizhanozeyranoglu.services.IGeoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Map;
 
 
 @Service
@@ -42,6 +42,6 @@ public class GeoServiceImpl implements IGeoService {
           e.getMessage();
       }
 
-        return null;
+        throw new BaseException(new ErrorMessage(MessageType.GENERAL_EXCEPTION,""));
     }
 }
