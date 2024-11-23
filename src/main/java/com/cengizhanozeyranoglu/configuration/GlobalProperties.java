@@ -11,8 +11,6 @@ public class GlobalProperties {
     @Value("${geo.endpoint}")
     private String geoEndpoint;
 
-    @Value("${geo.apiKey}")
-    private String apiKey;
 
     @Value("${weather.enpoint}")
     private String weatherEndpoint;

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
-
 @Service
 public class GeoServiceImpl implements IGeoService {
     @Autowired
@@ -23,25 +22,30 @@ public class GeoServiceImpl implements IGeoService {
     @Override
     public GeoResponse getGeoInfo(String city) {
 
-        String rootUrl =globalProperties.getGeoEndpoint();
+        String rootUrl = globalProperties.getGeoEndpoint();
 
-        String apiKey = globalProperties.getApiKey();
+        String language = "tr";
 
-        String endPoint = rootUrl + city + "&key=" + apiKey;
+        String count = "1";
+
+        String format = "json";
 
 
-      try{
-          RestTemplate restTemplate = new RestTemplate();
-          ResponseEntity<GeoResponse> response = restTemplate.exchange(endPoint, HttpMethod.GET, null, GeoResponse.class);
+        String endPoint = rootUrl + city + "&count=" + count + "&language=" + language + "&format=" + format;
 
-          if (response.getStatusCode().is2xxSuccessful()) {
-              return response.getBody();
 
-          }
-      }catch (Exception e){
-          e.getMessage();
-      }
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<GeoResponse> response = restTemplate.exchange(endPoint, HttpMethod.GET, null, GeoResponse.class);
 
-        throw new BaseException(new ErrorMessage(MessageType.GENERAL_EXCEPTION,""));
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return response.getBody();
+
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
+        throw new BaseException(new ErrorMessage(MessageType.GENERAL_EXCEPTION, ""));
     }
 }

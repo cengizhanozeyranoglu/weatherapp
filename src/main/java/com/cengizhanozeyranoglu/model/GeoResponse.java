@@ -1,8 +1,6 @@
 package com.cengizhanozeyranoglu.model;
 
 import lombok.Data;
-import org.springframework.data.geo.GeoResult;
-
 import java.util.List;
 
 

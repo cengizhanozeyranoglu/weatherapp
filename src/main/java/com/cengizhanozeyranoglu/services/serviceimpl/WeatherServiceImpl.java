@@ -25,8 +25,8 @@ public class WeatherServiceImpl extends GlobalProperties implements IWeatherServ
     @Override
     public WeatherApiResponse getWeather(String city) {
         GeoResponse geoResponse = geoService.getGeoInfo(city);
-        double Latitude = geoResponse.getResults().get(0).getGeometry().getLatitude();
-        double Longitude = geoResponse.getResults().get(0).getGeometry().getLongitude();
+        double Latitude = geoResponse.getResults().get(0).getLat();
+        double Longitude = geoResponse.getResults().get(0).getLon();
 
 
         String rootUrl = getWeatherEndpoint();
